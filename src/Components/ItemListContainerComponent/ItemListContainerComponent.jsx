@@ -1,19 +1,28 @@
 import React from 'react'
 
-const ItemListContainerComponent = ({greeting}) => {
-    const customStyles = {
-        color: "teal",
-        fontSize: "1rem",
-        margin:"auto",
-        width: "100vw",
-        height: "80vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+import "./ItemListContainerComponent.css"
+import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
+
+const ItemListContainerComponent = ({products}) => {
+  return <div className="itemListContainer">
+    {
+      products.map((product) => {
+        return (
+          <Card key={product.id} style={{ width: '18rem', margin: 15 }}>
+            <Card.Img variant="top" src={product.thumbnail} />
+            <Card.Body>
+              <Card.Title>{product.title}</Card.Title>
+              <Card.Text>
+                {product.description}
+              </Card.Text>
+              <Link to={`/item/${product.id}`}>Detalles</Link>
+            </Card.Body>
+          </Card>
+        )
+      })
     }
-  return (
-    <div style={customStyles}>{greeting}</div>
-  )
+  </div>
 }
 
 export default ItemListContainerComponent
