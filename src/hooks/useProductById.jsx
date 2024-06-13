@@ -1,7 +1,7 @@
 import React from 'react'
 import { getProductById } from '../services/products'
 
-export const useProductById = () => {
+export const useProductById = (id) => {
   const [product, setProducts] = React.useState({})
 
   React.useEffect(() => {
@@ -12,6 +12,6 @@ export const useProductById = () => {
         .catch((error) => {
             console.error(error)
         })
-  }, [])
+  }, [id])
   return { product }
 }
